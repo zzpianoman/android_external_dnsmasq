@@ -566,7 +566,10 @@ struct dhcp_packet {
   u16 secs, flags;
   struct in_addr ciaddr, yiaddr, siaddr, giaddr;
   u8 chaddr[DHCP_CHADDR_MAX], sname[64], file[128];
-  u8 options[312];
+  union {
+    u8 options[312];
+    u32 options32[78];
+  };
 };
 
 struct ping_result {
